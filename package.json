@@ -1,0 +1,64 @@
+{
+  "name": "server-action-handler",
+  "version": "0.1.0",
+  "description": "Wrap Next.js Server Actions (or any async function) so every outcome comes back as a typed, serializable ActionResult — with automatic Zod validation handling and safe error logging.",
+  "keywords": [
+    "server-actions",
+    "nextjs",
+    "next.js",
+    "zod",
+    "error-handling",
+    "typescript",
+    "result",
+    "validation",
+    "rpc"
+  ],
+  "license": "MIT",
+  "author": "Gurdeep Saroa",
+  "homepage": "https://github.com/gsaroa/server-action-handler#readme",
+  "bugs": "https://github.com/gsaroa/server-action-handler/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsaroa/server-action-handler.git"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup && tsc -p tsconfig.build.json && node -e \"require('fs').copyFileSync('dist/index.d.ts','dist/index.d.cts')\"",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "prepublishOnly": "pnpm run build",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm run build && changeset publish"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.14",
+    "@changesets/cli": "^3.0.3",
+    "@types/node": "^22.10.2",
+    "tsup": "^8.5.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1",
+    "zod": "^4.1.13"
+  },
+  "packageManager": "pnpm@12.4.2",
+  "engines": {
+    "node": ">=18"
+  }
+}

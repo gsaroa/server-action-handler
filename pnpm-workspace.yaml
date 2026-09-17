@@ -1,0 +1,9 @@
+allowBuilds:
+  esbuild: true
+
+onlyBuiltDependencies:
+  - "@biomejs/biome"
+  - esbuild
+
+overrides:
+  rolldown: 1.2.8
