@@ -69,6 +69,10 @@ function defaultFormatValidationError(error: unknown): {
   }
 }
 
+// Structural detection: an action returning a real payload shaped exactly
+// like `{ data, message }` (both keys present) will be misread as this
+// shorthand. See the README caveat under `actionHandler` — this is a known,
+// accepted tradeoff rather than something worth a breaking API change for.
 function isSuccessShorthand<TData>(
   result: unknown
 ): result is { data: TData; message: string } {

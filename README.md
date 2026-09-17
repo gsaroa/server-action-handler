@@ -1,5 +1,9 @@
 # server-action-handler
 
+[![CI](https://github.com/gsaroa/server-action-handler/actions/workflows/ci.yml/badge.svg)](https://github.com/gsaroa/server-action-handler/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/server-action-handler.svg)](https://www.npmjs.com/package/server-action-handler)
+[![MIT license](https://img.shields.io/npm/l/server-action-handler.svg)](./LICENSE)
+
 Wrap a Next.js Server Action (or any async function whose result crosses a serialization boundary) so it **never throws** — every outcome, success or failure, comes back as a typed `ActionResult<TData>` your client code can switch on.
 
 ```ts
@@ -127,6 +131,7 @@ npm install server-action-handler
 ## API
 
 - **`actionHandler(actionName, action, options?)`** — wraps an async function. `action` may return the data directly, or `{ data, message }` to set a custom success message.
+  > **Caveat:** the `{ data, message }` shorthand is detected structurally — if your actual return data is itself an object with both a `data` and a `message` key (e.g. a row shaped `{ id, data: {...}, message: "..." }`), it will be misread as the shorthand and unwrapped incorrectly. If your data shape might collide with this, nest it — return `{ data: yourRow }` explicitly, or rename the colliding field before returning.
 - **`CustomError`** — base class for domain errors. `new CustomError(message, statusCode, { field?, code?, meta?, cause?, exposeCause? })`.
 - **`ActionResult<TData, TMeta>`**, **`ActionError<TMeta>`**, **`ActionSuccess<TData>`** — the response types.
 - **`isZodErrorLike`**, **`flattenIssues`** — the Zod duck-typing helpers, exported in case you want them outside `actionHandler`.
