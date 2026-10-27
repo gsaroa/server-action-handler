@@ -15,7 +15,7 @@ export type ActionError<TMeta = unknown> = {
  */
 export type ActionSuccess<TData> = {
   data: TData
-  message?: string
+  message: string
 }
 
 /**
