@@ -1,5 +1,11 @@
 # server-action-handler
 
+## 1.0.0
+
+### Major Changes
+
+- 1f268ef: `ActionSuccess.message` is now `string`, not `string | undefined`. `actionHandler` always set it (your `{ data, message }` shorthand, or its own default), so results are unchanged; only the type is narrower. Code that builds an `ActionSuccess` by hand (mocks, tests) must now include `message`.
+
 ## 0.1.0
 
 Initial release.

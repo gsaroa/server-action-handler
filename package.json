@@ -1,6 +1,6 @@
 {
   "name": "server-action-handler",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Wrap Next.js Server Actions (or any async function) so every outcome comes back as a typed, serializable ActionResult — with automatic Zod validation handling and safe error logging.",
   "keywords": [
     "server-actions",
